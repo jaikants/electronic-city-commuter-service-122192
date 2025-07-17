@@ -1,0 +1,1 @@
+ /home/kavia/workspace/code-generation/electronic-city-commuter-service-122192/mobile_frontend/.dart_tool/flutter_build/d0ff247aa303caaa12a660f65769f4f1/native_assets.json: 
