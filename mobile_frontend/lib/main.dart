@@ -142,7 +142,7 @@ class AuthScreen extends StatelessWidget {
             children: [
               Text(title, style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: 20),
-              _AuthForm(
+              AuthForm(
                 isLogin: isLogin,
                 onSuccess: onAuthCompleted,
               ),
@@ -161,17 +161,24 @@ class AuthScreen extends StatelessWidget {
   }
 }
 
-class _AuthForm extends StatefulWidget {
+class AuthForm extends StatefulWidget {
   final bool isLogin;
   final void Function(UserType) onSuccess;
 
-  const _AuthForm({required this.isLogin, required this.onSuccess});
+  /// PUBLIC_INTERFACE
+  /// Authentication form widget for login or signup.
+  /// Accepts an optional key as per Flutter conventions.
+  const AuthForm({
+    super.key,
+    required this.isLogin,
+    required this.onSuccess,
+  });
 
   @override
-  State<_AuthForm> createState() => _AuthFormState();
+  State<AuthForm> createState() => _AuthFormState();
 }
 
-class _AuthFormState extends State<_AuthForm> {
+class _AuthFormState extends State<AuthForm> {
   final _formKey = GlobalKey<FormState>();
   bool isProvider = false;
 
