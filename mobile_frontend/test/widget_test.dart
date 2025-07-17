@@ -3,16 +3,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_frontend/main.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('ECCS App initializes and shows login screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const ECCSApp());
 
-    expect(find.text('mobile_frontend App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.text('Sign In'), findsWidgets);
+    expect(find.byIcon(Icons.email_outlined), findsOneWidget);
   });
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Toggle between login and signup modes', (WidgetTester tester) async {
+    await tester.pumpWidget(const ECCSApp());
 
-    expect(find.text('mobile_frontend'), findsOneWidget);
+    expect(find.text('Sign In'), findsOneWidget);
+
+    // Tap the "Don't have an account? Sign Up" button
+    await tester.tap(find.text("Don't have an account? Sign Up"));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Sign Up'), findsOneWidget);
+    expect(find.byIcon(Icons.person_outline), findsOneWidget);
   });
 }
